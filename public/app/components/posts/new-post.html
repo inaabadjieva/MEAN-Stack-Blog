@@ -1,0 +1,13 @@
+<div ng-hide="isLoggedIn()">
+ 	<h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>
+</div>
+<div class="artical-commentbox">
+		<h3>Add a new post</h3>
+		<div class="table-form">
+			<form ng-submit="newPost()" ng-show="isLoggedIn()">
+				<input type="text" class="textbox" placeholder ="Title"  ng-model="title"> 
+				<textarea placeholder="Message"  ng-model="body"></textarea>	
+				<input type="submit" value="Send">
+			</form>
+		</div>
+	</div>

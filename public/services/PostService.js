@@ -4,8 +4,8 @@ app.factory('posts', ['$http','auth', function($http, auth){
 	};
 
 	o.getAll = function() {
-		return $http.get('/posts').success(function(data){
-			angular.copy(data, o.posts);
+		return $http.get('/posts').then(function(result){
+			return result.data;
 		});
 	};
 

@@ -2,9 +2,10 @@ app.controller('PostsController', [
 	'$scope', 
 	'posts', 
 	'auth',
-	function($scope, posts,auth){
+	'PostsResolver',
+	function($scope, posts,auth, PostsResolver){
+		$scope.posts = PostsResolver;
 		$scope.isLoggedIn = auth.isLoggedIn;
-		console.log($scope.isLoggedIn());
 
 		$scope.newPost = function(){
 			if(!$scope.title || $scope.body === ' ') { return; }

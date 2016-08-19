@@ -19,7 +19,7 @@ app.config([
 			templateUrl: '/views/posts.html',
 			controller: 'PostsController',
 			resolve: {
-				post: ['$stateParams', 'posts', function($stateParams, posts) {
+				PostsResolver: [ 'posts', function(posts) {
 					return posts.getAll();
 				}]
 			}

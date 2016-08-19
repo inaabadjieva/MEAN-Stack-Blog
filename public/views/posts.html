@@ -1,0 +1,92 @@
+<!-- <div class="single-page-artical">
+		<div class="artical-content">
+			<h3>Lorem Ipsum is simply dummy text</h3>
+			<img class="img-responsive" src="assets/images/banner.jpg" alt=" " />
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut </p>
+		</div>
+		<div class="artical-links">
+			<ul>
+				<li><small> </small><span>June 30, 2015</span></li>
+				<li><a href="#"><small class="admin"> </small><span>admin</span></a></li>
+				<li><a href="#"><small class="no"> </small><span>No comments</span></a></li>
+				<li><a href="#"><small class="posts"> </small><span>View posts</span></a></li>
+			</ul>
+		</div>
+		<div class="comment-grid-top">
+			<h3>Responses</h3>
+			<div class="comments-top-top">
+				<div class="top-comment-left">
+					<a href="#"><img class="img-responsive" src="assets/images/co.png" alt=""></a>
+				</div>
+				<div class="top-comment-right">
+					<ul>
+						<li><span class="left-at"><a href="#">Admin</a></span></li>
+						<li><span class="right-at">June 30, 2015 at 10.30am</span></li>
+						<li><a class="reply" href="#">REPLY</a></li>
+					</ul>
+				<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less </p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="comments-top-top top-grid-comment">
+				<div class="top-comment-left">
+					<a href="#"><img class="img-responsive" src="assets/images/co.png" alt=""></a>
+				</div>
+				<div class="top-comment-right">
+					<ul>
+						<li><span class="left-at"><a href="#">Admin</a></li>
+						<li><span class="right-at">June 30, 2015 at 10.30am</span></li>
+						<li><a class="reply" href="#">REPLY</a></li>
+					</ul>
+				<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less </p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>			
+		<div class="artical-commentbox">
+			<h3>Leave a comment</h3>
+			<div class="table-form">
+				<form>
+					<textarea value="Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>	
+					<input type="submit" value="Send">
+				</form>
+			</div>
+		</div>	
+	</div> -->
+
+
+
+
+
+
+<div ng-repeat="post in posts">
+				<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span>
+				{{post.upvotes}}
+				<span style="font-size:20px; margin-left:10px;">
+					<a ng-show="post.link" href="{{post.link}}">{{post.title}}</a>
+					<span ng-hide="post.link">{{post.title}}	</span>	
+					<span ng-show="post.author">posted by <a>{{post.author}}</a></span>
+				</span>
+				<span><a href="#/posts/{{post._id}}">Comments</a></span>
+			</div>
+<div class="page-header">
+	<h3>
+		<a ng-show="post.link" href="{{post.link}}">{{post.title}}</a>
+		<span ng-hide="post.link">{{post.title}}</span>
+	</h3>
+</div>
+
+<div ng-repeat="comment in post.comments">
+	<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
+	{{comment.upvotes}} - by {{comment.author}}
+	<span style="font-size:20px; margin-left:10px">{{comment.body}}</span>
+</div>
+<div class="artical-commentbox">
+			<h3>Leave a comment</h3>
+			<div class="table-form">
+				<form ng-submit="addComment()"  ng-show="isLoggedIn()">
+					<textarea value="Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>	
+					<input type="submit" value="Send">
+				</form>
+			</div>
+		</div>	

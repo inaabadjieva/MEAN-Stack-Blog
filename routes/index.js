@@ -16,17 +16,15 @@ router.get('/', function(req, res, next) {
 
 //REGISTER
 router.post('/register', function(req, res, next) {
-	if(!req.body.username || !req.body.password || !req.body.email) {
-		return res.status(400).json({ message: 'Please fill out all fields'});
+	if(!req.body.username || !req.body.email || !req.body.password  || !req.body.password) {
+		return res.status(400).json({ message: 'Please fill out all fields.'});
 	}
 	var user = new User();
-
+	user.fullname = req.body.fullname;
 	user.username = req.body.username;
-
 	user.email = req.body.email;
-
 	user.setPassword(req.body.password);
-
+	
 	user.save(function(err) {
 		if(err) { return next(err); }
 		return res.json({ token: user.generateJWT()})
@@ -60,7 +58,6 @@ router.get('/posts', function(req, res, next) {
 
 //POST Post
 router.post('/new-post', auth, function(req, res, next) {
-	console.log(req.payload)
 	var post = new Post(req.body);
 	post.author = req.payload._id;
 

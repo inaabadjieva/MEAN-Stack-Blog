@@ -6,7 +6,7 @@ app.config([
 		$stateProvider
 		.state('home', {
 			url: '/home',
-			templateUrl: '/app/components/home/homeView.html',
+			templateUrl: '/views/homeView.html',
 			controller: 'MainController',
 			resolve: {
 				postPromise: ['posts', function(posts) {
@@ -16,38 +16,42 @@ app.config([
 		})
 		.state('posts', {
 			url: '/posts',
-			templateUrl: '/app/components/posts/posts.html',
+			templateUrl: '/views/posts.html',
 			controller: 'PostsController',
 			resolve: {
 				post: ['$stateParams', 'posts', function($stateParams, posts) {
-					return posts.get($stateParams.id);
+					return posts.getAll();
 				}]
 			}
 		})
 		.state('newPost', {
 			url: '/newPost',
-			templateUrl: '/app/components/posts/new-post.html',
+			templateUrl: '/views/new-post.html',
 			controller: 'PostsController',
-			// resolve: {
-			// 	post: ['$stateParams', 'posts', function($stateParams, posts) {
-			// 		return posts.get($stateParams.id);
-			// 	}]
-			// }
+		})
+		.state('contact', {
+			url: '/contact',
+			templateUrl: '/views/contact.html',
+			controller: 'AuthController',
+		})
+		.state('single-post', {
+			url: '/single-post',
+			templateUrl: '/views/single-post.html',
+			controller: 'PostController',
 		})
 		.state('login', {
 		  url: '/login',
-		  templateUrl: '/app/components/account/login.html',
+		  templateUrl: '/views/login.html',
 		  controller: 'AuthController',
 		  onEnter: ['$state', 'auth', function($state, auth){
 		    if(auth.isLoggedIn()){
-		    	console.log("Logged In")
 		      $state.go('home');
 		    }
 		  }]
 		})		
 		.state('register', {
 		  url: '/register',
-		  templateUrl: '/app/components/account/register.html',
+		  templateUrl: '/views/register.html',
 		  controller: 'AuthController',
 		  onEnter: ['$state', 'auth', function($state, auth){
 		    if(auth.isLoggedIn()){

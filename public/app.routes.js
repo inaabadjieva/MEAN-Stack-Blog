@@ -28,6 +28,11 @@ app.config([
 			url: '/newPost',
 			templateUrl: '/views/new-post.html',
 			controller: 'PostsController',
+			resolve : {
+				PostsResolver:[
+					function(){return true}
+				]
+				}
 		})
 		.state('contact', {
 			url: '/contact',

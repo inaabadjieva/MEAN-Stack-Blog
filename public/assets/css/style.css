@@ -580,6 +580,11 @@ a.sint:before{
 	float:left;
 	width:65%;
 }
+.blog-left-posts{
+	float:left;
+	width:100%;
+	margin-top: 3em;
+}
 .blog-right{
 	float:right;
 	width:30%;
@@ -589,26 +594,31 @@ a.sint:before{
 	width:80%;
 	margin-bottom: 3em;
 }
-.blog-left-grid-left h3{
+.blog-left-grid-left-posts{
+	float:left;
+	width:80%;
+	margin-bottom: 1em;
+}
+.blog-left-grid-left h3, .blog-left-grid-left-posts h3 a{
 	font-size: 25px;
 	margin: 0;
 	color: #c34c21;
 	font-family: LobsterTwo-Regular;
 	text-transform: capitalize;
 }
-.blog-left-grid-left h3 a{
+.blog-left-grid-left h3 a, .blog-left-grid-left-posts h3 a{
 	color: #c34c21;
 }
-.blog-left-grid-left h3 a:hover{
+.blog-left-grid-left h3 a:hover, .blog-left-grid-left-posts h3 a:hover{
 	color: #000;
 }
-.blog-left-grid-left p{
+.blog-left-grid-left p, .blog-left-grid-left-posts p{
 	color:#c34c21;
 	font-size:17px;
 	margin:.5em 0;
 	font-family:LobsterTwo-Italic;
 }
-.blog-left-grid-left p span{
+.blog-left-grid-left p span, .blog-left-grid-left-posts p span{
 	color:#000;
 }
 .blog-left-grid-right{
@@ -981,7 +991,7 @@ h3.ghj{
 .log form {
 	margin-top:32px;
 }
-.log form input[type="text"],.log form input[type="password"] {
+.log form input[type="text"],.log form input[type="password"],.log form input[type="email"] {
 	width: 70%;
 	padding: 8px;
 	font-size: 14px;
@@ -1066,6 +1076,10 @@ h3.ghj{
 }
 /*-- //login-page --*/
 /*-- register --*/
+.registerForm h4{
+	margin:0px 0px 30px 0px;
+	font-size:26px;
+}
 .sign-up{
 	width:75%;
 	padding: 2em 1em;

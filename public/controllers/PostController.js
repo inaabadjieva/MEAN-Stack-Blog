@@ -3,7 +3,7 @@ app.controller('PostsController', [
 	'posts', 
 	'auth',
 	'PostsResolver',
-	function($scope, posts,auth, PostsResolver){
+	function($scope, posts, auth, PostsResolver){
 		$scope.posts = PostsResolver;
 		$scope.isLoggedIn = auth.isLoggedIn;
 

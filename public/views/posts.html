@@ -1,31 +1,27 @@
-<div ng-repeat="post in posts">
-	<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span>
-	{{post.upvotes}}
-	<span style="font-size:20px; margin-left:10px;">
-		<a ng-show="post.link" href="{{post.link}}">{{post.title}}</a>
-		<span ng-hide="post.link">{{post.title}}	</span>	
-		<span ng-show="post.author">posted by <a>{{post.author}}</a></span>
-	</span>
-	<span><a href="#/posts/{{post._id}}">Comments</a></span>
-</div>
-<div class="page-header">
-	<h3>
-		<a ng-show="post.link" href="{{post.link}}">{{post.title}}</a>
-		<span ng-hide="post.link">{{post.title}}</span>
-	</h3>
-</div>
-
-<div ng-repeat="comment in post.comments">
-	<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
-	{{comment.upvotes}} - by {{comment.author}}
-	<span style="font-size:20px; margin-left:10px">{{comment.body}}</span>
-</div>
-<div class="artical-commentbox">
-			<h3>Leave a comment</h3>
-			<div class="table-form">
-				<form ng-submit="addComment()"  ng-show="isLoggedIn()">
-					<textarea value="Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>	
-					<input type="submit" value="Send">
-				</form>
+<div class="header-bottom">
+<!-- banner-bottom -->
+<!-- //banner-bottom -->
+<!-- posts -->
+	<div ng-repeat="post in posts">
+		<div class="blog">
+			<div class="blog-left-posts">
+				<div class="blog-left-grid">
+					<div class="blog-left-grid-left-posts">
+						<h3><a ng-href="/#/single-post">{{ post.title }}</a></h3>
+						<p>by <span>{{ post.author.username }}</span> | {{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</p>
+					</div>
+					<div class="blog-left-grid-right">
+						<a href="#" class="hvr-bounce-to-bottom non">{{post.comments.length}} Comments</a>
+					</div>
+					<div class="clearfix"> </div>
+					<a ng-href="/#/single-post"><img src="assets/images/4.jpg" alt=" " class="img-responsive" /></a>
+					<p class="para"> {{ post.body | limitTo: 500 }}...</p>
+					<div class="rd-mre">
+						<a ng-href="/#/single-post" class="hvr-bounce-to-bottom quod">Read More</a>
+					</div>
+				</div>
 			</div>
-		</div>	
+		</div>
+	<div class="clearfix"> </div>
+</div>
+<!-- posts -->

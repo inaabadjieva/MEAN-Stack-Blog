@@ -6,10 +6,9 @@
 					 <p>Welcome, please enter the following to continue.</p>
 					 <form ng-submit="logIn()">
 						 <h5>Username:</h5>	
-						 <input type="text" placeholder="Username" ng-model="user.username">
+						 <input type="text" ng-model="user.username" required>
 						 <h5>Password:</h5>
-						 <input type="password" placeholder="Password"
-		      ng-model="user.password">					
+						 <input type="password" ng-model="user.password" required>					
 						 <input type="submit" value="Login">			
 					 </form>
 			</div>

@@ -49,7 +49,7 @@ router.post('/login', function(req, res, next) {
 
 //GET Posts
 router.get('/posts', function(req, res, next) {
-	Post.find(function(err, posts) {
+	Post.find().populate('author').exec(function(err, posts) {
 		if(err) { return next(err); }
 
 		res.json(posts);
@@ -59,7 +59,6 @@ router.get('/posts', function(req, res, next) {
 //POST Post
 router.post('/new-post', auth, function(req, res, next) {
 	var post = new Post(req.body);
-	post.author = req.payload._id;
 
 	post.save(function(err, post){
 	 if(err){ return next(err); }

@@ -23,9 +23,11 @@
     <script src="app.module.js"></script>
     <script src="controllers/HomeController.js"></script>
     <script src="controllers/PostController.js"></script>
-     <script src="controllers/AuthController.js"></script>
+    <script src="controllers/AuthController.js"></script>
+    <script src="controllers/AlertController.js"></script>
     <script src="services/PostService.js"></script>
     <script src="services/AuthService.js"></script>
+    <script src="services/AlertService.js"></script>
     <script src="app.routes.js"></script>
    
   </head>
@@ -70,7 +72,17 @@
 				</div>
 			</div>
 <!-- //header -->
-<ui-view></ui-view>	
+
+	<div class="pages">
+		<!-- alerts -->
+		<div class="alerts">
+	  		<div ng-repeat="alert in alerts" type="{{alert.type}}" class="alert alert-{{alert.type}}"  id="scrollToDivID" close="closeAlert(alert.index)">{{ alert.msg }}</div>
+		</div>
+	<!-- //alerts -->
+
+		<ui-view></ui-view>	
+	</div>
+
 <!-- footer -->
 	<div class="footer-bottom">
 		<div class="container">

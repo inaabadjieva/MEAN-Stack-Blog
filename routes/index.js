@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var passport = require('passport');
 var jwt = require('express-jwt');
+var $q = require('q');
 
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
@@ -16,19 +17,47 @@ router.get('/', function(req, res, next) {
 
 //REGISTER
 router.post('/register', function(req, res, next) {
-	if(!req.body.username || !req.body.email || !req.body.password  || !req.body.password) {
+	if(!req.body.fullname || !req.body.email || !req.body.username || !req.body.password  || !req.body.confirmPassword) {
 		return res.status(400).json({ message: 'Please fill out all fields.'});
 	}
-	var user = new User();
-	user.fullname = req.body.fullname;
-	user.username = req.body.username;
-	user.email = req.body.email;
-	user.setPassword(req.body.password);
-	
-	user.save(function(err) {
-		if(err) { return next(err); }
-		return res.json({ token: user.generateJWT()})
+	if(req.body.password  !== req.body.confirmPassword) {
+		return res.status(400).json({message:"Passwords do not match. Please enter your password again." , type : "danger"});
+	}
+	var result = $q.defer()
+
+	User.find({username: req.body.username}).exec(function(err, users) {
+		if(users.length > 0){
+			result.reject({message:"This username already exist. Please enter another username." , type : "danger"})
+		}else {
+			result.resolve()
+		}
 	});
+	User.find({email: req.body.email}).exec(function(err, users) {
+		if(users.length > 0){
+			result.reject({message:"There is already a registered user with this email . Please enter another email." , type : "danger"})
+			
+		}else {
+			result.resolve()
+		}
+	});
+	result.promise.then(function(){
+		var user = new User();
+		user.fullname = req.body.fullname;
+		user.username = req.body.username;
+		user.email = req.body.email;
+		user.setPassword(req.body.password);
+		
+		user.save(function(err) {
+			if(err) { return next(err); }
+			return res.json({ token: user.generateJWT()})
+		});
+	}).fail(function(err){
+		return res.status(400).json(err)
+	})
+	// // if(users.email.indexOf(req.body.email) > -1) {
+	// 	return res.status(400).json({ message: 'This email already exist.'});
+	// }
+
 });
 
 //LOGIN

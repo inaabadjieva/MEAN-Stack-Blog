@@ -6,10 +6,10 @@ app.config([
 		$stateProvider
 		.state('home', {
 			url: '/home',
-			templateUrl: '/views/homeView.html',
-			controller: 'MainController',
+			templateUrl: '/views/home.html',
+			controller: 'HomeController',
 			resolve: {
-				postPromise: ['posts', function(posts) {
+				PostsResolver: [ 'posts', function(posts) {
 					return posts.getAll();
 				}]
 			}
@@ -39,8 +39,8 @@ app.config([
 			templateUrl: '/views/contact.html',
 			controller: 'AuthController',
 		})
-		.state('single-post', {
-			url: '/single-post',
+		.state('/single-post' , {
+			url: '/single-post' ,
 			templateUrl: '/views/single-post.html',
 			controller: 'PostController',
 		})

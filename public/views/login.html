@@ -1,24 +1,29 @@
-<!-- login-page -->
-	<div class="login">
-		<div class="login-grids">
-			<div class="col-md-6 log">
-					 <h3>Sign In</h3>
-					 <p>Welcome, please enter the following to continue.</p>
-					 <form ng-submit="logIn()">
-						 <h5>Username:</h5>	
-						 <input type="text" ng-model="user.username" required>
-						 <h5>Password:</h5>
-						 <input type="password" ng-model="user.password" required>					
-						 <input type="submit" value="Login">			
-					 </form>
-			</div>
-			<div class="col-md-6 login-right">
-					<h3>New Registration</h3>
-					<p>By creating an account with this blog page, you will be able to add new articles, manage its content and more.</p>
-					<a ng-href="/#/register" class="hvr-bounce-to-bottom button">Create An Account</a>
-			</div>
-			<div class="clearfix"></div>
-		</div>
+<!-- login -->
+<div class="login-page">
+	<div class="account_grid">
+		<div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+			<h3>NEW CUSTOMERS</h3>
+			<p>By creating an account with this blog page, you will be able to add new articles, manage its content and more.</p>
+			<a class="acount-btn" ng-href="/#/register">Create an Account</a>
+	   </div>
+	   <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+			<h3>REGISTERED CUSTOMERS</h3>
+			<p>If you have an account with us, please log in.</p>
+			<form ng-submit="logIn()">
+				<div>
+					<span>Username:<label>*</label></span>
+					<input type="text"  ng-model="user.username" required> 
+				</div>
+				<div>
+					<span>Password<label>*</label></span>
+					<input type="password" ng-model="user.password" required> 
+				</div>
+				<input type="submit" value="Login">
+			</form>
+	   </div>	
+		<div class="clearfix"> </div>
 	</div>
-<!-- //login-page -->
+</div>
+
+<!-- login -->
 

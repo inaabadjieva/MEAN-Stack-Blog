@@ -1,9 +1,11 @@
-app.controller('MainController', [
+app.controller('HomeController', [
 	'$scope', 
 	'posts',
 	'auth',
-	function($scope, posts, auth){
-		$scope.posts = posts.posts;
+	'PostsResolver',
+	function($scope, posts, auth,PostsResolver){
+	$scope.posts = PostsResolver;
+		console.log($scope.posts);
 		$scope.isLoggedIn = auth.isLoggedIn;
 
 		$scope.incrementUpvotes = function(post){

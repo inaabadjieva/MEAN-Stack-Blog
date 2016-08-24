@@ -7,19 +7,23 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <link href="assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="assets/css/common.css" rel='stylesheet' type='text/css' />
 	<link href="assets/css/style.css" rel='stylesheet' type='text/css' />
-	<link href="assets/css/style5.css" rel='stylesheet' type='text/css' />
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+	<!-- <link href="assets/css/common.css" rel='stylesheet' type='text/css' />
+	<link href="assets/css/style5.css" rel='stylesheet' type='text/css' /> -->
 
-	<script src="assets/js/jquery-1.11.1.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.js" type="text/javascript"></script>
+	<script src="assets/js/jquery.min.js" type="text/javascript"></script>
+	<script  src="assets/js/jquery.flexisel.js" type="text/javascript"></script>
 	<script  src="assets/js/responsiveslides.min.js" type="text/javascript"></script>
-	<script  src="assets/js/easyResponsiveTabs.js" type="text/javascript"></script>
-	<script  src="assets/js/jquery.swipebox.min.js" ></script>
+	
+	<!-- <script  src="assets/js/easyResponsiveTabs.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.js" type="text/javascript"></script>
+	<script  src="assets/js/jquery.swipebox.min.js" ></script> -->
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-   <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
- <script src="assets/js/custom.js"></script>
+   	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
     <script src="app.module.js"></script>
     <script src="controllers/HomeController.js"></script>
     <script src="controllers/PostController.js"></script>
@@ -28,67 +32,34 @@
     <script src="services/PostService.js"></script>
     <script src="services/AuthService.js"></script>
     <script src="services/AlertService.js"></script>
+    <script src="directives/slider.js"></script>
     <script src="app.routes.js"></script>
    
   </head>
 
   <body ng-app="blog">
 <!-- banner-body -->
-	<div class="banner-body">
-		<div class="container">
-<!-- header -->
-			<div class="header">
-				<div class="header-nav">
-					<nav class="navbar navbar-default" ng-controller="NavController">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<div class="navbar-header">
-						  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						  </button>
-						   <a class="navbar-brand" ng-href="/"><span>W</span>onderland</a>
-						</div>
+	<!-- header-nav -->
+	<div ng-include="'views/header-nav.html'"></div>
+	<!-- //header-nav -->
 
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
-						 <ul class="nav navbar-nav">
-							<li class="hvr-bounce-to-bottom "><a ng-href="/">Home</a></li>
-							<li class="hvr-bounce-to-bottom"><a ng-href="/#/posts">Posts</a></li>
-							<li class="hvr-bounce-to-bottom"><a ng-href="/#/newPost">New Post</a></li>
-							<li class="hvr-bounce-to-bottom"><a ng-href="/#/contact">Contact Us</a></li>
-						  </ul>
-						  <div class="sign-in">
-							<ul >
-								<li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
-								<li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
-								<li ng-hide="isLoggedIn()"><a ng-href="/#/login">Sign In </a>/</li>
-								<li ng-hide="isLoggedIn()"><a ng-href="/#/register">Register</a></li>
-							</ul>
-							</div>
-						</div><!-- /.navbar-collapse -->
-					</nav>
-				</div>
+	<div class="container">
+			<!-- alerts -->
+			<div class="alerts">
+						<div ng-repeat="alert in alerts" type="{{alert.type}}" class="alert alert-{{alert.type}}"  id="scrollToDivID" close="closeAlert(alert.index)">{{ alert.msg }}</div>
 			</div>
-<!-- //header -->
-
-	<div class="pages">
-		<!-- alerts -->
-		<div class="alerts">
-	  		<div ng-repeat="alert in alerts" type="{{alert.type}}" class="alert alert-{{alert.type}}"  id="scrollToDivID" close="closeAlert(alert.index)">{{ alert.msg }}</div>
-		</div>
-	<!-- //alerts -->
-
-		<ui-view></ui-view>	
+			<!-- //alerts -->
+	
+			<ui-view></ui-view>	
+	
 	</div>
-
-<!-- footer -->
+	<!-- footer -->
 	<div class="footer-bottom">
 		<div class="container">
 			<p>© 2016 Wonderland Blog. All rights reserved.</p>
 		</div>
 	</div>
-<!-- //footer -->
+	<!-- //footer -->
+		
 </body>
 </html>

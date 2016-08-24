@@ -1,0 +1,13 @@
+<!-- home-blog-left-->
+<div class="nam-matis" >
+	<div class="nam-matis-top" ng-repeat="post in posts | orderBy:'createdOn':true | limitTo:2"">
+		<div class="col-md-12 nam-matis-1 blog">
+			<a ng-href="/#/single-post"><img src="assets/images/5.jpg" class="img-responsive" alt=""></a>
+			<h3><a ng-href="/#/single-post">{{ post.title }}</a></h3>
+			<h6>Posted on {{post.createdOn | date:'MMM dd, yyyy  h:mma'}} by {{ post.author.username }}</h6>
+			<p>{{ post.body | limitTo: 200 }}...</p>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!-- home-blog-left-->

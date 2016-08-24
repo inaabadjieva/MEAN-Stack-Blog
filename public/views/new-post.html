@@ -1,4 +1,30 @@
-<div ng-hide="isLoggedIn()">
+<div class="main-1">
+	<div ng-hide="isLoggedIn()">
+	 	<h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>
+	</div>
+	<div class="register">
+  	  <form ng-submit="newPost()" ng-show="isLoggedIn()"> 
+		 <div class="register-top-grid">
+				<h3>Add a new post</h3>
+				 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+					<span>Title<label>*</label></span>
+					<input type="text"  ng-model="title" required> 
+				 </div>
+				 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+					 <span>Content:<label>*</label></span>
+					 <textarea ng-model="body"></textarea>	
+				 </div>
+				 <input type="submit" value="submit">
+				 <div class="clearfix"> </div>
+			</div>			 
+		</form>
+   </div>
+</div>
+
+
+
+
+<!-- <div ng-hide="isLoggedIn()">
  	<h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>
 </div>
 <div class="artical-commentbox">
@@ -10,4 +36,4 @@
 				<input type="submit" value="Send">
 			</form>
 		</div>
-</div>
+</div> -->

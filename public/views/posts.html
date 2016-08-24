@@ -1,27 +1,37 @@
-<div class="header-bottom">
-<!-- banner-bottom -->
-<!-- //banner-bottom -->
 <!-- posts -->
-	<div ng-repeat="post in posts">
-		<div class="blog">
-			<div class="blog-left-posts">
-				<div class="blog-left-grid">
-					<div class="blog-left-grid-left-posts">
-						<h3><a ng-href="/#/single-post">{{ post.title }}</a></h3>
-						<p>by <span>{{ post.author.username }}</span> | {{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</p>
-					</div>
-					<div class="blog-left-grid-right">
-						<a href="#" class="hvr-bounce-to-bottom non">{{post.comments.length}} Comments</a>
+<div class="blog">
+		<div class="blog-content">
+			<div class="blog-content-left">
+				<div class="blog-articals">
+				<div class="blog-artical" ng-repeat="post in posts">
+					<div class="blog-artical-info">
+						<div class="blog-artical-info-img">
+							<a href="single.html"><img src="assets/images/7.jpg" title="post-name"></a>
+						</div>
+						<div class="blog-artical-info-head">
+							<h2><a ng-href="/#/single-post">{{ post.title }}</a></h2>
+							<h6>Posted on {{post.createdOn | date:'MMM dd, yyyy  h:mma'}} by {{ post.author.username }}</h6>
+							
+						</div>
+						<div class="blog-artical-info-text">
+							<p>{{ post.body | limitTo: 500 }}...
+							<a ng-href="/#/single-post" class="hvr-bounce-to-bottom quod">Read More</a>
+							</p>
+						</div>
+						<div class="artical-links">
+  						 	<ul>
+  						 		<li><small> </small><span>june 14, 2013</span></li>
+  						 		<li><a href="#"><small class="admin"> </small><span>admin</span></a></li>
+  						 		<li><a href="#"><small class="no"> </small><span>No comments</span></a></li>
+  						 		<li><a href="#"><small class="posts"> </small><span>View posts</span></a></li>
+  						 		<li><a href="#"><small class="link"> </small><span>permalink</span></a></li>
+  						 	</ul>
+  						 </div>
 					</div>
 					<div class="clearfix"> </div>
-					<a ng-href="/#/single-post"><img src="assets/images/4.jpg" alt=" " class="img-responsive" /></a>
-					<p class="para"> {{ post.body | limitTo: 500 }}...</p>
-					<div class="rd-mre">
-						<a ng-href="/#/single-post" class="hvr-bounce-to-bottom quod">Read More</a>
-					</div>
 				</div>
 			</div>
 		</div>
-	<div class="clearfix"> </div>
+	</div>
 </div>
 <!-- posts -->

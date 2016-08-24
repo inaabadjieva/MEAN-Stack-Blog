@@ -1,0 +1,33 @@
+	<div class="header">
+		<div class="container">
+			<div class="logo">
+				<a ng-href="/"><h1>Wonderland</h1></a>
+			</div>
+			
+				<div class="head-nav" ng-controller="NavController">
+					<span class="menu"> </span>
+						<ul class="cl-effect-1">
+							<li class="hvr-bounce-to-bottom "><a ng-href="/">Home</a></li>
+							<li class="hvr-bounce-to-bottom"><a ng-href="/#/posts">Posts</a></li>
+							<li class="hvr-bounce-to-bottom"><a ng-href="/#/newPost">New Post</a></li>
+							<li class="hvr-bounce-to-bottom"><a ng-href="/#/contact">Contact Us</a></li>
+							<li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
+							<li ng-hide="isLoggedIn()"><a ng-href="/#/login">Sign In </a>/</li>
+							<li ng-hide="isLoggedIn()"><a ng-href="/#/register">Register</a></li>
+							<div class="clearfix"></div>
+						</ul>
+				</div>
+				
+						<!-- script-for-nav -->
+							<script>
+								$( "span.menu" ).click(function() {
+								  $( ".head-nav ul" ).slideToggle(300, function() {
+									// Animation complete.
+								  });
+								});
+							</script>
+						<!-- script-for-nav -->
+					<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- header -->

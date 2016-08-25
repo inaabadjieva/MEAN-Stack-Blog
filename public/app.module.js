@@ -1,1 +1,1 @@
-var app = angular.module('blog', ['ui.router',]);
+var app = angular.module('blog', ['ui.router','ui.bootstrap']);

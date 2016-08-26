@@ -7,7 +7,7 @@
 				<div class="callbacks_container">
 				  	<ul class="rslides" id="slider" data-slider-class-selector="rslides" data-slider-refresh-on-watch="images" slider>
 				  		<li ng-repeat="post in posts | orderBy:'createdOn':true | limitTo:4">
-							<a ng-href="/#/posts"><img src="assets/images/1.jpg" class="img-responsive" alt=""></a>
+							<a ng-href="/#/posts/{{post._id}}"><img src="assets/images/1.jpg" class="img-responsive" alt=""></a>
 							<div class="caption">
 								<h3>{{post.title}}</h3>
 								<p>{{ post.body | limitTo: 200 }}...</p>

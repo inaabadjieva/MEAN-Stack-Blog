@@ -6,25 +6,22 @@
 				<div class="blog-artical" ng-repeat="post in posts">
 					<div class="blog-artical-info">
 						<div class="blog-artical-info-img">
-							<a href="single.html"><img src="assets/images/7.jpg" title="post-name"></a>
+							<a href="/#/posts/{{post._id}}"><img src="assets/images/7.jpg" title="post-name"></a>
 						</div>
 						<div class="blog-artical-info-head">
-							<h2><a ng-href="/#/single-post">{{ post.title }}</a></h2>
-							<h6>Posted on <span class="post-info">{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span> by <span class="post-info">{{ post.author.username }}</span></h6>
-							
+							<h2><a ng-href="/#/posts/{{post._id}}">{{ post.title }}</a></h2>
 						</div>
 						<div class="blog-artical-info-text">
-							<p>{{ post.body | limitTo: 500 }}...
-							<a ng-href="/#/single-post" class="hvr-bounce-to-bottom quod">Read More</a>
+							<p>{{ post.body | limitTo: 1000 }}...
+							<a ng-href="/#/posts/{{post._id}}" class="hvr-bounce-to-bottom quod">Read More</a>
 							</p>
 						</div>
 						<div class="artical-links">
   						 	<ul>
-  						 		<li><small> </small><span>june 14, 2013</span></li>
-  						 		<li><a href="#"><small class="admin"> </small><span>admin</span></a></li>
-  						 		<li><a href="#"><small class="no"> </small><span>No comments</span></a></li>
+  						 		<li><small> </small><span>{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></li>
+  						 		<li><a href="#"><small class="admin"> </small><span>{{ post.author.username }}</span></a></li>
+  						 		<li><a href="#"><small class="no"> </small><span>{{post.comments.length}} comments</span></a></li>
   						 		<li><a href="#"><small class="posts"> </small><span>View posts</span></a></li>
-  						 		<li><a href="#"><small class="link"> </small><span>permalink</span></a></li>
   						 	</ul>
   						 </div>
 					</div>

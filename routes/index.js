@@ -111,7 +111,7 @@ router.param('post', function(req, res, next, id) {
 
 //GET Single Post
 router.get('/posts/:post', function(req, res, next) {
-	req.post.populate('comments', function(err, post) {
+	req.post.populate('author').populate('comments', function(err, post) {
 		if(err) { return next(err); }
 
 		res.json(post);
@@ -130,7 +130,7 @@ router.put('/posts/:post/upvote', auth, function(req, res, next) {
 router.post('/posts/:post/comments', auth, function(req, res, next) {
 	var comment = new Comment(req.body);
 	comment.post = req.post;
-	comment.author = req.payload.username;
+	comment.author = req.payload.username._id;
 
 	comment.save(function(err, comment) {
 		if(err) { return next(err); }

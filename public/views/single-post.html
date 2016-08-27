@@ -13,7 +13,7 @@
 			 		<li><a ng-href="/#/posts/{{post._id}}"><i class="fa fa-pencil" aria-hidden="true"></i><span>edit</span></li>
 			 		<li><a ng-href="/#/posts"><i class="fa fa-trash" aria-hidden="true"></i><span>delete</span></a></li>
 			 		<li>
-			 			<button class="btn" ng-click="open()"> Comment</button>
+			 			<button class="btn" ng-click='open("post",post._id)'> Comment</button>
 			 		</li>
 			 	</ul>
 			 </div>
@@ -31,7 +31,7 @@
 						</div>
 					<div class="clearfix"></div>
 					<div class="rep">
-						<a href="#" class="reply">REPLY</a>
+						<a href="" class="reply" ng-click="open('comment',comment._id)">REPLY</a>
 					</div>
 				</div>
 				<div class="strator1">

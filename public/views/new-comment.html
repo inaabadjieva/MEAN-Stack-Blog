@@ -7,7 +7,7 @@
 			<div class="log-in-alert" ng-hide="$ctrl.isLoggedIn()">
 			 	<h4>You need to <a ng-href="/#/login"><span>Log In</span></a> or <a ng-href="/#/register"><span>Register</span></a> before you can add a comment.</h4>
 			</div>
-				 <textarea value="Message:" placeholder="Message" ng-model="comment.body" required>Message</textarea>
+				 <textarea value="Message:" placeholder="Message" ng-model="$ctrl.comment.body" required>Message</textarea>
 		</div>
 	</div>
 	<div class="modal-footer">

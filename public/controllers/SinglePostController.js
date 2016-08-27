@@ -2,39 +2,35 @@ app.controller('SinglePostController',
 	function($scope, posts, post, auth,$uibModal, $log){
 		$scope.post = post;
 		$scope.isLoggedIn = auth.isLoggedIn;
-		$scope.addComment = function(){
-			console.log($scope.comment)
-			if( $scope.body === ' ') { return; }
-			posts.addComment(post._id, {
-				body: $scope.comment.body,
-			}).then(function(comment) {
-				$scope.post.comments.push(comment.data);
-			});
-			$scope.body = ' ';
-		};
+	
 		// $scope.incrementUpvotes = function(comment){
 		// 	posts.upvoteComment(post, comment);
 		// };
 	
-  	$scope.items = ['item1', 'item2', 'item3'];
 
   	$scope.animationsEnabled = true;
 
-  	$scope.open = function (size) {
+  	$scope.open = function (refObject,refId) {
 	    var modalInstance = $uibModal.open({
-	      animation: $scope.animationsEnabled,
+	      animation: true,
 	      ariaLabelledBy: 'modal-title',
 	      ariaDescribedBy: 'modal-body',
 	      templateUrl: 'views/new-comment.html',
 	      controller: 'ModalInstanceCtrl',
 	      controllerAs: '$ctrl',
-	      size: size,
+	      size: 'lg',
 	      resolve: {
-	        items: function () {
-	          return $scope.items;
+	        refObject: function () {
+	          return refObject;
+	        },
+	        refId : function(){
+	        	return refId
 	        },
 	        isLoggedIn : function(){
 	        	return	$scope.isLoggedIn;
+	        },
+	        posts : function(){
+	        	return posts;
 	        }
 	      }
 	    });
@@ -47,12 +43,29 @@ app.controller('SinglePostController',
  	};
  });
 
-app.controller('ModalInstanceCtrl', function ($uibModalInstance, items,isLoggedIn) {
+app.controller('ModalInstanceCtrl', function ($uibModalInstance, refObject,refId,isLoggedIn,posts) {
   var $ctrl = this;
   $ctrl.isLoggedIn = isLoggedIn;
- 
+ 	
   $ctrl.ok = function () {
-    $uibModalInstance.close($ctrl.selected.item);
+  		
+  		var newComment = {
+  			body : $ctrl.comment.body,
+  		}
+  		 if (refObject == 'post') { 
+  		 	newComment.post = refId;
+  		 }
+  		 if (refObject == 'comment') { 
+  		 	newComment.comment= refId;
+  		 }
+ 
+
+		posts.addComment(newComment).then(function(comment) {
+			//$scope.post.comments.push(comment.data);
+		});
+		// $scope.body = ' ';
+
+ 		$uibModalInstance.close();
   };
 
   $ctrl.cancel = function () {

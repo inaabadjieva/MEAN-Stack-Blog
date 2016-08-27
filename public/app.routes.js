@@ -68,6 +68,11 @@ app.config([
 		      $state.go('home');
 		    }
 		  }]
+		})
+		.state('test', {
+		  url: '/test',
+		  templateUrl: 'views/test.html',
+		 // controller: 'TestController',
 		});
 
 		$urlRouterProvider.otherwise('home');

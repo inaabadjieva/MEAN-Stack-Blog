@@ -12,6 +12,9 @@
 			 		<li><i class="fa fa-commenting" aria-hidden="true"></i><span>{{post.comments.length}} comments</span></li>
 			 		<li><a ng-href="/#/posts/{{post._id}}"><i class="fa fa-pencil" aria-hidden="true"></i><span>edit</span></li>
 			 		<li><a ng-href="/#/posts"><i class="fa fa-trash" aria-hidden="true"></i><span>delete</span></a></li>
+			 		<li>
+			 			<button class="btn" ng-click="open()"> Comment</button>
+			 		</li>
 			 	</ul>
 			 </div>
 
@@ -44,19 +47,6 @@
 					<div class="rep">
 						<a href="#" class="reply">REPLY</a>
 					</div>
-				</div>
-				
-				<div class="comment">
-					<h2>Leave a comment</h2>
-					<div class="log-in-alert" ng-hide="isLoggedIn()">
-					 	<h4>You need to <a ng-href="/#/login"><span>Log In</span></a> or <a ng-href="/#/register"><span>Register</span></a> before you can add a comment.</h4>
-					</div>
-					<form ng-submit="addComment()">
-					 <textarea value="Message:" placeholder="Message" ng-model="comment.body" required>Message</textarea>
-					 <div class="smt1">
-						<input type="submit" value="add a comment">
-					 </div>
-				   </form>
 				</div>
 			</div>
 		</div>

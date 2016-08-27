@@ -54,10 +54,6 @@ router.post('/register', function(req, res, next) {
 	}).fail(function(err){
 		return res.status(400).json(err)
 	})
-	// // if(users.email.indexOf(req.body.email) > -1) {
-	// 	return res.status(400).json({ message: 'This email already exist.'});
-	// }
-
 });
 
 //LOGIN
@@ -87,6 +83,9 @@ router.get('/posts', function(req, res, next) {
 
 //POST Post
 router.post('/new-post', auth, function(req, res, next) {
+	if(!req.body.title || !req.body.body ) {
+		return res.status(400).json({ message: 'Please fill out all fields.'});
+	}
 	var post = new Post(req.body);
 
 	post.author = req.payload._id;
@@ -111,20 +110,32 @@ router.param('post', function(req, res, next, id) {
 
 //GET Single Post
 router.get('/posts/:post', function(req, res, next) {
-	req.post.populate('author').populate('comments', function(err, post) {
+	req.post.populate([{
+		path : 'author',
+		model : 'User',
+	},
+	{
+		path : 'comments',
+		model : 'Comment',
+		populate: {
+			path : 'author',
+			model : 'User'
+		}
+	}
+	],
+	 function(err, post) {
 		if(err) { return next(err); }
-
 		res.json(post);
-	});
+	});	
 });
 
 //UPVOTE Post
-router.put('/posts/:post/upvote', auth, function(req, res, next) {
-	req.post.upvote(function(err, post) {
-		if(err) { return next(err); }
-		res.json(post);
-	});
-});
+// router.put('/posts/:post/upvote', auth, function(req, res, next) {
+// 	req.post.upvote(function(err, post) {
+// 		if(err) { return next(err); }
+// 		res.json(post);
+// 	});
+// });
 
 //POST Comment
 router.post('/posts/:post/comments', auth, function(req, res, next) {

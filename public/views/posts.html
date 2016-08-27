@@ -12,16 +12,15 @@
 							<h2><a ng-href="/#/posts/{{post._id}}">{{ post.title }}</a></h2>
 						</div>
 						<div class="blog-artical-info-text">
-							<p>{{ post.body | limitTo: 1000 }}...
+							<p ng-bind-html="post.body | limitTo: 1000">... 
 							<a ng-href="/#/posts/{{post._id}}" class="hvr-bounce-to-bottom quod">Read More</a>
 							</p>
 						</div>
 						<div class="artical-links">
   						 	<ul>
-  						 		<li><small> </small><span>{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></li>
-  						 		<li><a href="#"><small class="admin"> </small><span>{{ post.author.username }}</span></a></li>
-  						 		<li><a href="#"><small class="no"> </small><span>{{post.comments.length}} comments</span></a></li>
-  						 		<li><a href="#"><small class="posts"> </small><span>View posts</span></a></li>
+  						 		<li><i class="fa fa-calendar" aria-hidden="true"></i><span>{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></li>
+						 		<li><i class="fa fa-user" aria-hidden="true"></i><span>{{post.author.username}}</span></li>
+						 		<li><i class="fa fa-commenting" aria-hidden="true"></i><span>{{post.comments.length}} comments</span></li>
   						 	</ul>
   						 </div>
 					</div>

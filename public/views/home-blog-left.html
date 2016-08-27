@@ -5,7 +5,7 @@
 			<a ng-href="/#/posts/{{post._id}}"><img src="assets/images/5.jpg" class="img-responsive" alt=""></a>
 			<h3><a ng-href="/#/posts/{{post._id}}">{{ post.title }}</a></h3>
 			<h6>Posted on <span class="post-info">{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span> by <span class="post-info">{{ post.author.username }}</span></h6>
-			<p>{{ post.body | limitTo: 200 }}...</p>
+			<p ng-bind-html="post.body | limitTo: 500"></p>
 		</div>
 		<div class="clearfix"> </div>
 	</div>

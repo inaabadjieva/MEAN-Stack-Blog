@@ -4,13 +4,14 @@
 		<div class="single-top">	
 			<img src="assets/images/7.jpg" class="img-responsive" alt="">		
 			<h3>{{post.title}}</h3>	
-			<p class="sin">{{post.body}}</p>
+			<p class="sin" ng-bind-html="post.body"></p>
 			<div class="artical-links">
 			 	<ul>
-			 		<li><small> </small><span>{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></li>
-			 		<li><a href="#"><small class="admin"> </small><span>{{post.author.username}}</span></a></li>
-			 		<li><a href="#"><small class="no"> </small><span>{{post.comments.length}} comments</span></a></li>
-			 		<li><a ng-href="/#/posts"><small class="posts"> </small><span>View posts</span></a></li>
+			 		<li><i class="fa fa-calendar" aria-hidden="true"></i><span>{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></li>
+			 		<li><i class="fa fa-user" aria-hidden="true"></i><span>{{post.author.username}}</span></li>
+			 		<li><i class="fa fa-commenting" aria-hidden="true"></i><span>{{post.comments.length}} comments</span></li>
+			 		<li><a ng-href="/#/posts/{{post._id}}"><i class="fa fa-pencil" aria-hidden="true"></i><span>edit</span></li>
+			 		<li><a ng-href="/#/posts"><i class="fa fa-trash" aria-hidden="true"></i><span>delete</span></a></li>
 			 	</ul>
 			 </div>
 
@@ -34,7 +35,7 @@
 					<h5>JANE DOE</h5>
 					<p>feb 20th, 2015 at 9:41 pm</p>
 						<div class="strator-left">
-							<img src="images/co.png" class="img-responsive" alt="">
+							<img src="assets/images/co.png" class="img-responsive" alt="">
 						</div>
 						<div class="strator-right">
 							<p class="sin">Text.</p>
@@ -44,10 +45,11 @@
 						<a href="#" class="reply">REPLY</a>
 					</div>
 				</div>
+				
 				<div class="comment">
 					<h2>Leave a comment</h2>
-					<div>
-					 	<h4>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h4>
+					<div class="log-in-alert" ng-hide="isLoggedIn()">
+					 	<h4>You need to <a ng-href="/#/login"><span>Log In</span></a> or <a ng-href="/#/register"><span>Register</span></a> before you can add a comment.</h4>
 					</div>
 					<form ng-submit="addComment()">
 					 <textarea value="Message:" placeholder="Message" ng-model="comment.body" required>Message</textarea>

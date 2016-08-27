@@ -7,10 +7,19 @@ app.controller('HomeController', [
 		$scope.posts = PostsResolver;
 		$scope.isLoggedIn = auth.isLoggedIn;
 
-		$scope.incrementUpvotes = function(post){
-			posts.upvote(post);
-		};
+		// $scope.incrementUpvotes = function(post){
+		// 	posts.upvote(post);
+		// };
 }]);
+
+// app.filter('cutText', function () {
+//     return function (text, length) {
+//         if (text.length > length) {
+//             return text.substr(0, length) + "<a href='#'>...</a>";
+//         }
+//         return text;
+//     }
+// });
 
 app.directive('slider',function() {
     var linker = function(scope, element, attr) {

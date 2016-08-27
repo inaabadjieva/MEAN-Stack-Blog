@@ -117,10 +117,15 @@ router.get('/posts/:post', function(req, res, next) {
 	{
 		path : 'comments',
 		model : 'Comment',
-		populate: {
+		populate: [{
 			path : 'author',
 			model : 'User'
+		},
+		{
+			path : 'comments',
+			model : 'Comment'
 		}
+		]
 	}
 	],
 	 function(err, post) {

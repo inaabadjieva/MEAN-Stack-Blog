@@ -1,25 +1,27 @@
-app.controller('HomeController', [
+app.controller('PostController', [
 	'$scope', 
-	'posts',
+	'posts', 
 	'auth',
 	'PostsResolver',
-	function($scope, posts, auth,PostsResolver){
+	'alertService',
+	'$state',
+	function($scope, posts, auth, PostsResolver,alertService,$state){
 		$scope.posts = PostsResolver;
 		$scope.isLoggedIn = auth.isLoggedIn;
-
-		// $scope.incrementUpvotes = function(post){
-		// 	posts.upvote(post);
-		// };
-}]);
-
-// app.filter('cutText', function () {
-//     return function (text, length) {
-//         if (text.length > length) {
-//             return text.substr(0, length) + "<a href='#'>...</a>";
-//         }
-//         return text;
-//     }
-// });
+		$scope.body = new String();
+		$scope.newPost = function(){
+			if($scope.title === ' ' || $scope.body === ' ') { return; }
+			posts.create({
+				title: $scope.title, 
+				body: $scope.body,
+			}).then(function(){
+				$state.go('home');
+				alertService.add("success", "Well done! You successfully added a new post.");
+			});
+			alertService.clear();
+		};
+	}
+]);
 
 app.directive('slider',function() {
     var linker = function(scope, element, attr) {
@@ -61,3 +63,6 @@ app.directive('slider',function() {
 //     link: linker
 //   }
 // });
+
+
+

@@ -10,68 +10,41 @@
 			 		<li><i class="fa fa-calendar" aria-hidden="true"></i><span>{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></li>
 			 		<li><i class="fa fa-user" aria-hidden="true"></i><span>{{post.author.username}}</span></li>
 			 		<li><i class="fa fa-commenting" aria-hidden="true"></i><span>{{post.comments.length}} comments</span></li>
-			 		<li><a ng-href="/#/posts/{{post._id}}"><i class="fa fa-pencil" aria-hidden="true"></i><span>edit</span></li>
-			 		<li><a ng-href="/#/posts"><i class="fa fa-trash" aria-hidden="true"></i><span>delete</span></a></li>
 			 		<li>
-			 			<button class="btn" ng-click='open("post",post._id)'> Comment</button>
+			 			<a ng-href="/#/post/{{post._id}}/edit"><button class="single-post-btn">Edit</button></a>
 			 		</li>
+			 		<li>
+			 			<button class="single-post-btn" ng-click="deletePost()">Delete</button>
+			 		</li>
+			 		<li>
+			 			<button class="single-post-btn" ng-click="openModal('post',post._id)">Comment</button>
+			 		</li>	 	
 			 	</ul>
 			 </div>
 
 			<div class="respon">
 				<h2>Comments:</h2>
-				<div class="strator" ng-repeat="comment in post.comments">
-					<h5>{{comment.author.username}}</h5>
-					<p>{{comment.createdOn | date:'MMM dd, yyyy  h:mma'}}</p>
-						<div class="strator-left">
-							<img src="assets/images/co.png" class="img-responsive" alt="">
+				<div ng-repeat="comment in post.comments | orderBy:'createdOn':true">
+					<div class="strator">
+						<h5><span class="comment-author">{{ comment.author.username }}</span> | <span class="comment-date">{{comment.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></h5>
+							<div class="strator-left">
+								<p class="sin">{{comment.body}}</p>
+							</div>
+						<div class="clearfix"></div>
+						<div class="rep">
+							<a href="" class="reply" ng-click="open('comment',comment._id)">REPLY</a>
 						</div>
-						<div class="strator-right">
-							<p class="sin">{{comment.body}}</p>
-						</div>
-					<div class="clearfix"></div>
-					<div class="rep">
-						<a href="" class="reply" ng-click="open('comment',comment._id)">REPLY</a>
 					</div>
-				</div>
-				<div class="strator1">
-					<h5>JANE DOE</h5>
-					<p>feb 20th, 2015 at 9:41 pm</p>
+						
+					<div class="strator1" ng-repeat="response in responses = comment.responses">
+						<h5><span class="comment-author">{{ response.author.username }}</span> | <span class="comment-date">{{response.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></h5>
 						<div class="strator-left">
-							<img src="assets/images/co.png" class="img-responsive" alt="">
+							<p class="sin">{{response.body}}</p>
 						</div>
-						<div class="strator-right">
-							<p class="sin">Text.</p>
-						</div>
-					<div class="clearfix"></div>
-					<div class="rep">
-						<a href="#" class="reply">REPLY</a>
-					</div>
-				</div>
+						<div class="clearfix"></div>
+					</div>				
+				</div>		
 			</div>
 		</div>
-
-		<div class="blog-content-right">
-				<!-- start-tag-weight-->
-				<div class="b-tag-weight">
-					<h3>Tags Weight</h3>
-					<ul>
-						<li><a href="#">Lorem</a></li>
-						<li><a href="#">consectetur</a></li>
-						<li><a href="#">dolore</a></li>
-						<li><a href="#">aliqua</a></li>
-						<li><a href="#">sit amet</a></li>
-						<li><a href="#">ipsum</a></li>
-						<li><a href="#">Lorem</a></li>
-						<li><a href="#">consectetur</a></li>
-						<li><a href="#">dolore</a></li>
-						<li><a href="#">aliqua</a></li>
-						<li><a href="#">sit amet</a></li>
-						<li><a href="#">ipsum</a></li>
-					</ul>
-				</div>
-				<!---- //End-tag-weight---->
-			</div>
-			<div class="clearfix"> </div>
 	</div>
 </div>

@@ -6,11 +6,7 @@ var CommentSchema = new mongoose.Schema({
 	createdOn: {type : Date, default : Date.now},
 	author: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 	post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post'},
-	comments: [{type:mongoose.Schema.Types.ObjectId, ref : 'Comment'}]
+	responses: [{type:mongoose.Schema.Types.ObjectId, ref : 'Comment'}]
 });
 
-CommentSchema.methods.upvote = function(cb){
-	this.upvotes +=1;
-	this.save(cb);
-}
 mongoose.model('Comment', CommentSchema);

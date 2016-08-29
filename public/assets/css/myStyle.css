@@ -1,39 +1,39 @@
 /*new-post*/
 .new-post  {
-	width:100%;
+    width:100%;
 }
 .log-in-alert {
-	margin-bottom: 3em;
+    margin-bottom: 3em;
 }
 .log-in-alert h3{
-	margin-left: 15px
+    margin-left: 15px
 }
 .log-in-alert span{
-	color: #f53f1a;
-	text-decoration: underline;
+    color: #f53f1a;
+    text-decoration: underline;
 }
 .new-post input[type="text"] {
-	width:100%;
-	margin-bottom: 3em;
-     line-height: 1.42857143;
-    	color: #555;
-    	border: 1px solid #ccc;
+    width:100%;
+    margin-bottom: 3em;
+    line-height: 1.42857143;
+    color: #555;
+    border: 1px solid #ccc;
 }
 .new-post form div{
-	padding: 0;
+    padding: 0;
 }
 .new-post span{
-	display: inline;
+    display: inline;
 }
 .form-control {
-	margin-bottom: 3em;	
-	border-radius: 0px;
+    margin-bottom: 3em;	
+    border-radius: 0px;
 }
 .btn-group button,{
-	border-radius: 0px;
+    border-radius: 0px;
 }
 #toolbarWC, #toolbarCC{
-	display: block;
+    display: block;
     min-width: 130px;
     max-height: 34px;
     margin-bottom: 1em;
@@ -46,15 +46,15 @@
     line-height: 1.428571429;
 }
 .ta-scroll-window > .ta-bind{
-	height: 500px;
-	min-height: 300px;
+    height: 500px;
+    min-height: 300px;
 }
 /*new-post*/
 
-/*edit-post*/
+/*single-post*/
 .artical-links ul li i{
-	background: no-repeat -9px -2px;
-	width: 20px;
+    background: no-repeat -9px -2px;
+    width: 20px;
     height: 20px;
     display: inline-block;
     margin-right: 0px;
@@ -66,9 +66,38 @@
     padding-left: 0px;
 }
 .artical-links ul li {
-	margin: 0 30px 0 0;
+    margin: 0 30px 0 0;
 }
-/*edit-post*/
+.comment-date{
+    color: #666666;
+    font-size: 1.1em;
+    font-weight: 400;
+}
+.comment-author{
+    color: #26313b;
+    font-weight: 700;
+    font-size: 1.1em;
+}  
+.single-post-btn {
+    text-decoration: none;
+    font-size: 1.1em;
+    background: #26313b;
+    color: #f0f0f0;
+    padding: 0.5em 1em;
+     transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 400;
+    border: none;
+}
+.single-post-btn:hover{
+    background-color: #f53f1a;
+    color: black;
+}
+/*single-post*/
 
 /*contact*/
 .company-right, .company-right h3{
@@ -81,8 +110,4 @@
     padding-bottom: 0.5em;
     font-weight: 700;
     font-family: 'Libre Baskerville', serif;
-}
-
-
-
 }

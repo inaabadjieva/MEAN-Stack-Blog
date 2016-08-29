@@ -1288,16 +1288,18 @@ a.reply:hover{
 }
 .strator-left {
   float: left;
-  width: 11%;
+  width: 100%;
 }
 .strator {
   padding: 2em 2em;
   background: rgba(0, 0, 0, 0.09);
+  margin-top: 1em;
 }
 .strator1 {
   padding: 2em 2em;
-  background: rgba(0, 0, 0, 0.09);
-  margin: 1em 0 0 5em;
+  background: rgba(0, 0, 0, 0.19);
+  margin: 0 0 0 7em;
+  border-top: 1px dotted #000;
 }
 .comment input[type="text"] {
   display: block;
@@ -1356,7 +1358,7 @@ a.reply:hover{
    font-family: 'Libre Baskerville', serif;
 }
 .respon h5 {
-  color: #fff;
+  color: #302e2e;
   font-weight: 400;
   font-size: 1.3em;
 }
@@ -1395,7 +1397,7 @@ i.tag {
 }
 .single-top {
   float: left;
-  width: 74%;
+  width: 100%;
   padding: 1em;
   border: 1px solid #D8DADC;
 }

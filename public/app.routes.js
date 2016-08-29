@@ -1,4 +1,3 @@
-
 app.config([
 	'$stateProvider',
 	'$urlRouterProvider',
@@ -7,7 +6,7 @@ app.config([
 		.state('home', {
 			url: '/home',
 			templateUrl: 'views/home.html',
-			controller: 'HomeController',
+			controller: 'PostController',
 			resolve: {
 				PostsResolver: [ 'posts', function(posts) {
 					return posts.getAll();
@@ -17,25 +16,35 @@ app.config([
 		.state('posts', {
 			url: '/posts',
 			templateUrl: 'views/posts.html',
-			controller: 'PostsController',
+			controller: 'PostController',
 			resolve: {
 				PostsResolver: [ 'posts', function(posts) {
 					return posts.getAll();
 				}]
 			}
 		})
-		.state('newPost', {
-			url: '/newPost',
+		.state('new-post', {
+			url: '/new-post',
 			templateUrl: 'views/new-post.html',
-			controller: 'PostsController',
+			controller: 'PostController',
 			resolve : {
 				PostsResolver:[
 					function(){return true}
 				]
-				}
+			}
+		})
+		.state('edit-post', {
+			url: '/post/{id}/edit',
+			templateUrl: 'views/edit-post.html',
+			controller: 'SinglePostController',
+			resolve: {
+				post: ['$stateParams', 'posts', function($stateParams, posts) {
+					return posts.get($stateParams.id);
+				}]
+			}
 		})
 		.state('post', {
-			url: '/posts/{id}',
+			url: '/post/{id}',
 			templateUrl: 'views/single-post.html',
 			controller: 'SinglePostController',
 			resolve: {
@@ -69,11 +78,5 @@ app.config([
 		    }
 		  }]
 		})
-		.state('test', {
-		  url: '/test',
-		  templateUrl: 'views/test.html',
-		 // controller: 'TestController',
-		});
-
 		$urlRouterProvider.otherwise('home');
 	}]);

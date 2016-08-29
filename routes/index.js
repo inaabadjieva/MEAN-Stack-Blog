@@ -111,19 +111,23 @@ router.param('post', function(req, res, next, id) {
 //GET Single Post
 router.get('/posts/:post', function(req, res, next) {
 	req.post.populate([{
-		path : 'author',
-		model : 'User',
+		path: 'author',
+		model: 'User',
 	},
 	{
-		path : 'comments',
-		model : 'Comment',
+		path: 'comments',
+		model: 'Comment',
 		populate: [{
-			path : 'author',
-			model : 'User'
+			path: 'author',
+			model: 'User'
 		},
 		{
-			path : 'comments',
-			model : 'Comment'
+			path: 'responses',
+			model: 'Comment',
+			populate: {
+			path: 'author',
+			model: 'User'
+		},
 		}
 		]
 	}
@@ -145,11 +149,10 @@ router.get('/posts/:post', function(req, res, next) {
 //POST Comment
 router.post('/comments', auth, function(req, res, next) {
 	var comment = new Comment(req.body);
-	comment.author = req.payload.username._id;
+	comment.author = req.payload._id;
 	comment.save(function(err, comment) {
 		if(err) { return next(err); }
 		if(req.body.post) {
-			console.log("save to Post")
 			Post.findById(req.body.post).exec(function(err,post){
 				if(err) { return next(err)}
 				post.comments.push(comment._id)
@@ -157,10 +160,9 @@ router.post('/comments', auth, function(req, res, next) {
 			})	
 		}
 		if(req.body.comment) {
-			console.log("save to Comment")
 			Comment.findById(req.body.comment).exec(function(err,resComment){
 				if(err) { return next(err)};
-				resComment.comments.push(comment._id)
+				resComment.responses.push(comment._id)
 				resComment.save();
 			})
 		}
@@ -168,23 +170,25 @@ router.post('/comments', auth, function(req, res, next) {
 	});
 });
 
-router.param('comment', function(req, res, next, id) {
-	var query = Comment.findById(id);
+//EDIT Post
+router.put('/edit-post', auth, function(req, res, next) {
+	if(!req.body.title || !req.body.body ) {
+		return res.status(400).json({ message: 'Please fill out all fields.'});
+	}
+	var post = req.body;
+	
+	Post.findByIdAndUpdate(req.body._id, post, function(err, result) {
+  	if (err) { return next(err)};
 
-	query.exec(function(err, comment) {
-		if(err) { return next(err); }
-		if(!comment) { return next(new Error('can\'t find comment')); }
-
-		req.comment = comment;
-		return next();
+  	res.json(result);
 	});
 });
 
-//UPVOTE Comments
-router.put('/posts/:post/comments/:comment/upvote', auth, function(req, res, next) {
-	req.comment.upvote(function(err, comment) {
-		if(err) { return next(err); }
-		res.json(comment);
+//DELETE Post
+router.delete('/delete-post/:id', auth, function(req, res, next) {
+	Post.findByIdAndRemove(req.params.id, function(err) {
+ 		if (err) { return next(err)};
+ 		res.json("deleted");
 	});
 });
 

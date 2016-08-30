@@ -116,3 +116,6 @@
     font-weight: 700;
     font-family: 'Libre Baskerville', serif;
 }
+.pagination-centered {
+    text-align: center;
+}

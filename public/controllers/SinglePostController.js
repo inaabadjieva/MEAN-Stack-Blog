@@ -16,7 +16,6 @@ app.controller('SinglePostController', function(
 		$scope.currentUser = auth.currentUser();
 		$scope.title = post.title;
 		$scope.body = post.body;
-		$scope.isCollapsed = false;
 
 		$scope.editPost = function(){
 			if($scope.title === ' ' || $scope.body === ' ') { return; }

@@ -4,11 +4,33 @@ app.controller('PostController', function(
 	auth, 
 	PostsResolver,
 	alertService,$state, 
-	$sce){
+	$sce
+	){
 		$scope.posts = PostsResolver;
 		$scope.isLoggedIn = auth.isLoggedIn;
 		$scope.body = new String();
-		
+
+		$scope.viewby = 5;
+		$scope.totalItems = $scope.posts.length;
+		$scope.currentPage = 1;
+		$scope.itemsPerPage = $scope.viewby;
+		$scope.maxSize = 5; 
+
+		//Pagination
+		 $scope.setPage = function (pageNo) {
+		    $scope.currentPage = pageNo;
+		  };
+
+		  $scope.pageChanged = function() {
+		    console.log('Page changed to: ' + $scope.currentPage);
+		  };
+
+		$scope.setItemsPerPage = function(num) {
+		  $scope.itemsPerPage = num;
+		  $scope.currentPage = 1; 
+		}
+ 		//End Pagination 
+
 		$scope.newPost = function(){
 			if($scope.title === ' ' || $scope.body === ' ') { return; }
 			posts.create({

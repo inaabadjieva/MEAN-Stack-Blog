@@ -1,17 +1,10 @@
-app.controller('AuthController', [
-	'$scope', 
-	'$state',
-	'auth',
-	'alertService',
-	'$timeout',
-	function ($scope, $state, auth,alertService, $timeout) {
-		$scope.user = {
-			fullname : "Ina Abadjieva",
-			email : "ina_abadjieva@yahoo.com",
-			username : "ina22",
-			password : "test",
-			confirmPassword : "test"
-		};
+app.controller('AuthController', function (
+	$scope, 
+	$state, 
+	auth,
+	alertService, 
+	$timeout) {
+		$scope.user = {};
 		$scope.register = function(){
 			auth.register($scope.user).error(function(error){
 				alertService.add(error.type,error.message);			
@@ -34,4 +27,4 @@ app.controller('AuthController', [
 			alertService.clear();
 		};
 	}
-]);
+);

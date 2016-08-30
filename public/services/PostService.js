@@ -17,13 +17,13 @@ app.factory('posts', ['$http','auth', function($http, auth){
 		});
 	};
 
-	// o.upvote = function(post) {
-	// 		return $http.put('/posts/' + post._id + '/upvote', null, {
-	// 			headers: {Authorization: 'Bearer ' + auth.getToken()}
-	// 		}).success(function(data){
-	// 			post.upvotes += 1;
-	// 		});
-	// 	};
+	o.upvote = function(post) {
+			return $http.put('/posts/' + post._id + '/upvote', null, {
+				headers: {Authorization: 'Bearer ' + auth.getToken()}
+			}).success(function(data){
+				post.upvotes += 1;
+			});
+		};
 
 	o.get = function(id) {
 		return $http.get('/posts/' + id).then(function(res){

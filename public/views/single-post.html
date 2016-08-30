@@ -2,23 +2,31 @@
 <div class="content-top">
 	<div class="single">
 		<div class="single-top">	
-			<img src="assets/images/7.jpg" class="img-responsive" alt="">		
-			<h3>{{post.title}}</h3>	
+			<img ng-src="{{post.banner}}" class="img-responsive" alt="">		
+			<div class="artical-links">
+			 	<ul>
+			 		<li><i class="fa fa-user" id="fa-user" aria-hidden="true"></i><span>{{post.author.username}}</span></li>
+			 		<li><i class="fa fa-calendar" id="fa-calender" aria-hidden="true"></i><span>{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></li>
+			 		<li><i class="fa fa-thumbs-up"  id="fa-thumbs-up" aria-hidden="true"></i><span>{{post.upvotes}} likes</span></li>
+			 		<li><i class="fa fa-comments"  id="fa-comments" aria-hidden="true"></i><span>{{post.comments.length}} comments</span></li>
+			 	</ul>
+			 </div>
+			<h3 id="post-title">{{post.title}}</h3>	
 			<p class="sin" ng-bind-html="post.body"></p>
 			<div class="artical-links">
 			 	<ul>
-			 		<li><i class="fa fa-calendar" aria-hidden="true"></i><span>{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></li>
-			 		<li><i class="fa fa-user" aria-hidden="true"></i><span>{{post.author.username}}</span></li>
-			 		<li><i class="fa fa-commenting" aria-hidden="true"></i><span>{{post.comments.length}} comments</span></li>
-			 		<li>
+			 		<li ng-hide="showBtn()">
+			 			<button class="single-post-btn" ng-click="incrementUpvotes(post)"><i class="fa fa-thumbs-up"  id="fa-thumbs-up" aria-hidden="true"></i>Like</button>
+			 		</li>	 
+			 		<li ng-hide="showBtn()">
+			 			<button class="single-post-btn" ng-click="openModal('post',post._id)"><i class="fa fa-comment"  id="fa-comment" aria-hidden="true"></i>Comment</button>
+			 		</li>	 
+			 		<li ng-show="showBtn()">
 			 			<a ng-href="/#/post/{{post._id}}/edit"><button class="single-post-btn">Edit</button></a>
 			 		</li>
-			 		<li>
+			 		<li ng-show="showBtn()">
 			 			<button class="single-post-btn" ng-click="deletePost()">Delete</button>
-			 		</li>
-			 		<li>
-			 			<button class="single-post-btn" ng-click="openModal('post',post._id)">Comment</button>
-			 		</li>	 	
+			 		</li>	
 			 	</ul>
 			 </div>
 
@@ -32,7 +40,7 @@
 							</div>
 						<div class="clearfix"></div>
 						<div class="rep">
-							<a href="" class="reply" ng-click="open('comment',comment._id)">REPLY</a>
+							<a href="" class="reply" ng-click="openModal('comment',comment._id)">REPLY</a>
 						</div>
 					</div>
 						

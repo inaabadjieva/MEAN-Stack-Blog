@@ -1,18 +1,22 @@
-app.controller('SinglePostController', [
-	'$scope', 
-	'posts', 
-	'post',
-	'auth',
-	'alertService',
-	'$uibModal',
-	'$log',
-	'$window',
-	'$state',
-	function($scope, posts, post, auth, alertService, $uibModal, $log, $window, $state){
+app.controller('SinglePostController', function(
+	$scope, 
+	posts, 
+	post, 
+	auth, 
+	alertService, 
+	$uibModal, 
+	$log, 
+	$window, 
+	$state,
+	$sce
+	){
+
 		$scope.post = post;
 		$scope.isLoggedIn = auth.isLoggedIn;
+		$scope.currentUser = auth.currentUser();
 		$scope.title = post.title;
 		$scope.body = post.body;
+		$scope.isCollapsed = false;
 
 		$scope.editPost = function(){
 			if($scope.title === ' ' || $scope.body === ' ') { return; }
@@ -33,43 +37,50 @@ app.controller('SinglePostController', [
 			alertService.clear();
 		};
 
-	// $scope.incrementUpvotes = function(comment){
-	// 	posts.upvoteComment(post, comment);
-	// };
+		$scope.incrementUpvotes = function(post){
+			posts.upvote(post);
+		};
 
-  	$scope.openModal = function (refObject,refId) {
-	    var modalInstance = $uibModal.open({
-	      animation: true,
-	      ariaLabelledBy: 'modal-title',
-	      ariaDescribedBy: 'modal-body',
-	      templateUrl: 'views/new-comment.html',
-	      controller: 'ModalInstanceCtrl',
-	      controllerAs: '$ctrl',
-	      size: 'lg',
-	      resolve: {
-	        refObject: function () {
-	          return refObject;
-	        },
-	        refId : function(){
-	        	return refId
-	        },
-	        isLoggedIn : function(){
-	        	return	$scope.isLoggedIn;
-	        },
-	        posts : function(){
-	        	return posts;
-	        }
-	      }
-	    });
+		$scope.showBtn = function(){
+			if(post.author.username === $scope.currentUser){
+				return true;
+			}
+			return false;
+		};
 
-	    modalInstance.result.then(function (selectedItem) {
-	      $scope.selected = selectedItem;
-	      $window.location.reload();
-	    }, function () {
-	      $log.info('Modal dismissed at: ' + new Date());
-	    });
- 	};
- }]);
+	  	$scope.openModal = function (refObject,refId) {
+		    var modalInstance = $uibModal.open({
+		      animation: true,
+		      ariaLabelledBy: 'modal-title',
+		      ariaDescribedBy: 'modal-body',
+		      templateUrl: 'views/new-comment.html',
+		      controller: 'ModalInstanceCtrl',
+		      controllerAs: '$ctrl',
+		      size: 'lg',
+		      resolve: {
+		        refObject: function () {
+		          return refObject;
+		        },
+		        refId : function(){
+		        	return refId
+		        },
+		        isLoggedIn : function(){
+		        	return	$scope.isLoggedIn;
+		        },
+		        posts : function(){
+		        	return posts;
+		        }
+		      }
+		    });
+
+		    modalInstance.result.then(function (selectedItem) {
+		      $scope.selected = selectedItem;
+		      $window.location.reload();
+		    }, function () {
+		      $log.info('Modal dismissed at: ' + new Date());
+		    });
+	 	};
+	 });
 
 app.controller('ModalInstanceCtrl', function ($uibModalInstance, refObject,refId,isLoggedIn,posts) {
   var $ctrl = this;

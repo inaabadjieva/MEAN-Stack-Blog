@@ -169,14 +169,14 @@ ul a:focus {
 	left: 0%;
 	text-align: center;
 	background: rgba(38, 49, 59, 0.54);
-	padding: 0.5em 1.5em;
+	padding: 3em 3em;
 }
 .caption h3{
 	color: #FFF;
 	font-weight: 700;
 	font-size: 1.8em;
 	text-align:left;
-	font-size: 1.5em;
+	font-size: 2em;
 	font-family: 'Libre Baskerville', serif;
 }
 .caption p {
@@ -326,7 +326,7 @@ ul.callbacks_tabs.callbacks1_tabs {
   color:#26313b;
    margin: 1em 0 0;
    margin-bottom: 10px;
-   font-size: 1.4em;
+   font-size: 2em;
   font-weight: 700;
   font-family: 'Libre Baskerville', serif;
 }
@@ -804,7 +804,7 @@ h3.m_3 {
 /*----*/
 .blog-content-left {
   float: left;
-  width: 74%;
+  width: 100%;
   padding: 1em;
   border: 1px solid #D8DADC;
 }
@@ -1454,8 +1454,8 @@ a.b-home:hover{
   padding: 10px 0px;
   border: 1px dashed rgba(0, 0, 0, 0.61);
   border-left: none;
-  margin-top: 5px;
   border-right: none;
+  margin-top: 5px;
 }
 .artical-links ul li small {
   background: url(../images/img-sprite.png)no-repeat -9px -2px;
@@ -1556,11 +1556,11 @@ a.b-home:hover{
 	display: block;
 	text-transform: uppercase;
 }
-.login-right input[type="text"] {
+.login-right input[type="text"], .login-right input[type="email"] {
 	border: 1px solid #26313b;
 	outline-color:#26313b;
 	width: 96%;
-	font-size:1em;
+	font-size:1.2em;
 	padding: 0.5em;
 }
 .login-right textarea {

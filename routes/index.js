@@ -139,12 +139,12 @@ router.get('/posts/:post', function(req, res, next) {
 });
 
 //UPVOTE Post
-// router.put('/posts/:post/upvote', auth, function(req, res, next) {
-// 	req.post.upvote(function(err, post) {
-// 		if(err) { return next(err); }
-// 		res.json(post);
-// 	});
-// });
+router.put('/posts/:post/upvote', auth, function(req, res, next) {
+	req.post.upvote(function(err, post) {
+		if(err) { return next(err); }
+		res.json(post);
+	});
+});
 
 //POST Comment
 router.post('/comments', auth, function(req, res, next) {

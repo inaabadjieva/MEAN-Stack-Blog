@@ -4,6 +4,7 @@ var PostSchema = new mongoose.Schema({
 	title: String,
 	link: String,
 	body: String,
+	banner:String,
 	createdOn: {type : Date, default : Date.now},
 	upvotes: {type: Number, default: 0},
 	author: { type: mongoose.Schema.Types.ObjectId, ref: "User"},

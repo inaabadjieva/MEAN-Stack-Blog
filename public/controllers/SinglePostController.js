@@ -10,7 +10,6 @@ app.controller('SinglePostController', function(
 	$state,
 	$sce
 	){
-
 		$scope.post = post;
 		$scope.isLoggedIn = auth.isLoggedIn;
 		$scope.currentUser = auth.currentUser();
@@ -27,14 +26,6 @@ app.controller('SinglePostController', function(
 			});
 			alertService.clear();
 		};
-
-		// $scope.deletePost = function(){
-		// 	posts.delete(post).then(function(){
-		// 		$state.go('posts');
-		// 		alertService.add("success", "Well done! You successfully deleted your post.");
-		// 	});
-		// 	alertService.clear();
-		// };
 
 		$scope.incrementUpvotes = function(post){
 			posts.upvote(post);
@@ -61,11 +52,8 @@ app.controller('SinglePostController', function(
 		    	posts.delete(post).then(function(){
 					$state.go('posts');
 					alertService.add("success", "Well done! You successfully deleted your post.");
-					alertService.clear();
 				});
-		     
-		    }, function () {
-		   
+		    alertService.clear();
 		    });
 	 	};
 
@@ -103,7 +91,7 @@ app.controller('SinglePostController', function(
 	 	};
 	 });
 
-app.controller('DeleteModalCtrl', function ($uibModalInstance, posts, post, $state) {
+app.controller('DeleteModalCtrl', function ($uibModalInstance) {
   var $ctrl = this;
  	
   $ctrl.delete = function () {

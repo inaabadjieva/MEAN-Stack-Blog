@@ -401,7 +401,7 @@ ul.callbacks_tabs.callbacks1_tabs {
 .blo-top {
   padding: 1em 1em;
   border: 1px solid #D8DADC;
-  margin: 1em 0;
+  margin: 1em 0 60px;
 }
 .blog-grid-right p {
   color: #302e2e;
@@ -429,7 +429,7 @@ ul.callbacks_tabs.callbacks1_tabs {
   background: #f53f1a;
   color: #fff;
   padding: 0.5em 1em;
-  margin: 1.5em 0 0;
+  margin-top: 0;
   font-size: 1.3em;
   font-family: 'Libre Baskerville', serif;
 }

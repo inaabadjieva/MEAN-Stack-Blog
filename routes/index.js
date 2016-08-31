@@ -74,7 +74,7 @@ router.post('/login', function(req, res, next) {
 
 //GET Posts
 router.get('/posts', function(req, res, next) {
-	Post.find().populate('author').exec(function(err, posts) {
+	Post.find().populate('author').sort({createdOn: -1}).exec(function(err, posts) {
 		if(err) { return next(err); }
 
 		res.json(posts);

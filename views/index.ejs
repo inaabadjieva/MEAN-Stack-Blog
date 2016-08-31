@@ -50,8 +50,8 @@
 	<!-- //header-nav -->
 	<div class="container">
 		<!-- alerts -->
-		<div class="alerts">
-					<div ng-repeat="alert in alerts" type="{{alert.type}}" class="alert alert-{{alert.type}}"  id="scrollToDivID" close="closeAlert(alert.index)">{{ alert.msg }}</div>
+		<div class="alerts {{alert.type}}">
+					<div uib-alert ng-repeat="alert in alerts" class="alert alert-{{alert.type}}" id="scrollToDivID" close="closeAlert($index)">{{ alert.msg }}</div>
 		</div>
 		<!-- //alerts -->
 			<ui-view></ui-view>	

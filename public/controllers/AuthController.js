@@ -20,7 +20,8 @@ app.controller('AuthController', function (
 		$scope.logIn = function(){
 			auth.logIn($scope.user).error(function(error){
 				$scope.error = error;
-			}).then(function(){
+				alertService.add("danger", "Wrong credentials! Please try again.");
+			}).then(function(res){
 				$state.go('home');
 				alertService.add("success", "Well done! You successfully signed in.");
 			});

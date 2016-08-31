@@ -7,13 +7,19 @@ app.factory('alertService', function($rootScope,$location, $anchorScroll,$timeou
       $rootScope.alerts.push({'type': type, 'msg': msg});
       $location.hash('scrollToDivID');
       $anchorScroll();
-      $timeout(function(){
+      if(type === 'success'){
+        $timeout(function(){
         $rootScope.alerts = []
-      }, 3000)
+        }, 3000)
+      }  
+    };
+
+    $rootScope.closeAlert = function(index) {
+      $rootScope.alerts.splice(index, 1);
     };
 
     alertService.clear = function(){
-        $rootScope.alerts = [];
+      $rootScope.alerts = [];
     }
 
     return alertService;

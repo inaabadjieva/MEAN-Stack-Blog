@@ -1,11 +1,70 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <title>Wonderland's Blog</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link href="assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link href="assets/css/style.css" rel='stylesheet' type='text/css' />
+	<link href='assets/libs/textAngular-1.5.7/dist/textAngular.css' rel='stylesheet' type='text/css'>
+	<link href="assets/css/myStyle.css" rel='stylesheet' type='text/css' />
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+	<link href="assets/fonts/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+	<script src="assets/js/jquery.min.js" type="text/javascript"></script>
+	<script  src="assets/js/jquery.flexisel.js" type="text/javascript"></script>
+	<script  src="assets/js/responsiveslides.min.js" type="text/javascript"></script>
+	<!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <!-- TODO move this link inside the Project  !!! CHECK FOR OTHERS - THERE ARE -->
+   	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+	<!-- Angular bootstrap  -->
+	<link href="angular-ui-bootstrap/dist/ui-bootstrap-csp.css" rel="stylesheet">
+	<script src="angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+	<!-- <script src="angular-ui-bootstrap/dist/ui-bootstrap.js"></script> -->
+   <!-- HTML Editor -->
+	<script src="assets/libs/textAngular-1.5.7/dist/textAngular-rangy.min.js" type="text/javascript"></script>
+	<script src="assets/libs/textAngular-1.5.7/dist/textAngular-sanitize.min.js" type="text/javascript"></script>
+	<script src="assets/libs/textAngular-1.5.7/dist/textAngular.min.js" type="text/javascript"></script>
+	<!-- Project -->
+    <script src="app.module.js"></script>
+    <script src="controllers/NavController.js"></script>
+    <script src="controllers/PostController.js"></script>
+    <script src="controllers/AuthController.js"></script>
+    <script src="controllers/AlertController.js"></script>
+    <script src="controllers/SinglePostController.js"></script>
+  
+    <script src="services/PostService.js"></script>
+    <script src="services/AuthService.js"></script>
+    <script src="services/AlertService.js"></script>
+    <script src="app.routes.js"></script>
+   
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+  <body ng-app="blog">
+<!-- banner-body -->
+	<!-- header-nav -->
+	<div ng-include="'views/header-nav.html'"></div>
+	<!-- //header-nav -->
+	<div class="container">
+		<!-- alerts -->
+		<div class="alerts {{alert.type}}">
+					<div uib-alert ng-repeat="alert in alerts" class="alert alert-{{alert.type}}" id="scrollToDivID" close="closeAlert($index)">{{ alert.msg }}</div>
+		</div>
+		<!-- //alerts -->
+			<ui-view></ui-view>	
+	</div>
+	<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="footer-text">
+				<p>© 2016 Wonderland Blog. All rights reserved.</p>
+			</div>
+		</div>
+	</div>
+	<!-- //footer -->		
+</body>
 </html>

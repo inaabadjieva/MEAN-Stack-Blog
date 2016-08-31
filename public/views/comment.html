@@ -1,0 +1,12 @@
+<h5>{{comment.author.username}}</h5>
+<p>{{comment.createdOn | date:'MMM dd, yyyy  h:mma'}}</p>
+	<div class="strator-left">
+		<img src="assets/images/co.png" class="img-responsive" alt="">
+	</div>
+	<div class="strator-right">
+		<p class="sin">{{comment.body}}</p>
+	</div>
+<div class="clearfix"></div>
+<div class="rep">
+	<a href="" class="reply" ng-click="open('comment',comment._id)">REPLY</a>
+</div>

@@ -1,0 +1,59 @@
+<!--single -->
+<div class="content-top">
+	<div class="single">
+		<div class="single-top">	
+			<img ng-src="{{post.banner}}" class="img-responsive" alt="">		
+			<div class="artical-links">
+			 	<ul>
+			 		<li><i class="fa fa-user" id="fa-user" aria-hidden="true"></i><span>{{post.author.username}}</span></li>
+			 		<li><i class="fa fa-calendar" id="fa-calender" aria-hidden="true"></i><span>{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></li>
+			 		<li><i class="fa fa-thumbs-up"  id="fa-thumbs-up" aria-hidden="true"></i><span>{{post.upvotes}} likes</span></li>
+			 		<li><i class="fa fa-comments"  id="fa-comments" aria-hidden="true"></i><span>{{post.comments.length}} comments</span></li>
+			 	</ul>
+			 </div>
+			<h3 id="post-title">{{post.title}}</h3>	
+			<p class="sin" ng-bind-html="post.body"></p>
+			<div class="artical-links">
+			 	<ul>
+			 		<li ng-hide="showBtn()">
+			 			<button class="single-post-btn" ng-click="incrementUpvotes(post)"><i class="fa fa-thumbs-up"  id="fa-thumbs-up" aria-hidden="true"></i>Like</button>
+			 		</li>	 
+			 		<li ng-hide="showBtn()">
+			 			<button class="single-post-btn" ng-click="openCommentModal('post',post._id)"><i class="fa fa-comment"  id="fa-comment" aria-hidden="true"></i>Comment</button>
+			 		</li>	 
+			 		<li ng-show="showBtn()">
+			 			<a ng-href="/#/post/{{post._id}}/edit"><button class="single-post-btn">Edit</button></a>
+			 		</li>
+			 		<li ng-show="showBtn()">
+			 			<button class="single-post-btn" ng-click="openDeleteModal()">Delete</button>
+			 		</li>	
+			 	</ul>
+			 </div>
+
+			<div class="respon">
+				<h2>Comments:</h2>
+				<div ng-repeat="comment in post.comments | orderBy:'createdOn':true">
+					<div class="strator">
+						<h5><span class="comment-author">{{ comment.author.username }}</span> | <span class="comment-date">{{comment.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></h5>
+							<div class="strator-left">
+								<p class="sin">{{comment.body}}</p>
+							</div>
+						<div class="clearfix"></div>
+						<div class="rep">
+							<button class="single-post-btn" ng-click="openCommentModal('comment',comment._id)">Reply</button>
+							<!-- <a href="" class="reply" ng-click="openCommentModal('comment',comment._id)">REPLY</a> -->
+						</div>
+					</div>
+						
+					<div class="strator1" ng-repeat="response in responses = comment.responses">
+						<h5><span class="comment-author">{{ response.author.username }}</span> | <span class="comment-date">{{response.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></h5>
+						<div class="strator-left">
+							<p class="sin">{{response.body}}</p>
+						</div>
+						<div class="clearfix"></div>
+					</div>				
+				</div>		
+			</div>
+		</div>
+	</div>
+</div>

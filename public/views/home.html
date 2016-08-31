@@ -1,0 +1,71 @@
+<!--home-view -->
+<div class="col-md-9 bann-right">
+	<!-- banner -->
+	<div class="banner">		
+		<div class="header-slider">
+			<div class="slider">
+				<div class="callbacks_container">
+				  	<ul class="rslides" id="slider" data-slider-class-selector="rslides" data-slider-refresh-on-watch="images" slider>
+				  		<li ng-repeat="post in posts | orderBy:'createdOn':true | limitTo:4">
+						<img ng-src="{{post.banner}}" class="img-responsive" alt="">
+							<a ng-href="/#/post/{{post._id}}">
+								<div class="caption">					
+									<h3 id="#post-title">{{post.title}}</h3>						
+								</div>
+							</a>
+						</li>
+					</ul>
+		  		</div>
+			 </div>
+		</div>
+	</div>
+	<!-- banner -->	
+	<!-- latest 3 posts -->
+	<div class= "blog-left">
+		<div class="nam-matis" >
+			<div class="nam-matis-top" ng-repeat="post in posts | orderBy:'createdOn':true | limitTo:3">
+				<div class="col-md-12 nam-matis-1 blog">
+					<a ng-href="/#/post/{{post._id}}"><img ng-src="{{post.banner}}" class="img-responsive" alt=""></a>
+					<h3 id="#post-title"><a ng-href="/#/post/{{post._id}}">{{ post.title }}</a></h3>
+					<h6>Posted on <span class="post-info">{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span> by <span class="post-info">{{ post.author.username }}</span></h6>
+					<p ng-bind-html="post.body | limitHtml:500"></p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!-- latest 3 posts -->
+</div>
+	<!-- top posts -->
+<div class="blog-right">
+	<div class="col-md-3 bann-left">
+		<h3>Recent Posts</h3>
+		<div class="blo-top">
+			<div class="blog-grids" ng-repeat="post in posts | orderBy: 'createdOn':true | limitTo: 5">
+				<div class="blog-grid-left">
+					<a ng-href="/#/post/{{post._id}}"><img ng-src="{{post.banner}}" class="img-responsive" alt=""></a>
+				</div>
+				<div class="blog-grid-right">
+					<h4><a ng-href="/#/post/{{post._id}}">{{ post.title }}</a></h4>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3 bann-left">
+		<h3>Popular Posts</h3>
+		<div class="blo-top">
+			<div class="blog-grids" ng-repeat="post in posts | orderBy: 'upvotes':true | limitTo: 5">
+				<div class="blog-grid-left">
+					<a ng-href="/#/post/{{post._id}}"><img ng-src="{{post.banner}}" class="img-responsive" alt=""></a>
+				</div>
+				<div class="blog-grid-right">
+					<h4><a ng-href="/#/post/{{post._id}}">{{ post.title }}</a></h4>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!-- top posts -->
+</div>
+<!-- //home-view -->

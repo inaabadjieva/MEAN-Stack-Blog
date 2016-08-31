@@ -19,13 +19,13 @@
 			 			<button class="single-post-btn" ng-click="incrementUpvotes(post)"><i class="fa fa-thumbs-up"  id="fa-thumbs-up" aria-hidden="true"></i>Like</button>
 			 		</li>	 
 			 		<li ng-hide="showBtn()">
-			 			<button class="single-post-btn" ng-click="openModal('post',post._id)"><i class="fa fa-comment"  id="fa-comment" aria-hidden="true"></i>Comment</button>
+			 			<button class="single-post-btn" ng-click="openCommentModal('post',post._id)"><i class="fa fa-comment"  id="fa-comment" aria-hidden="true"></i>Comment</button>
 			 		</li>	 
 			 		<li ng-show="showBtn()">
 			 			<a ng-href="/#/post/{{post._id}}/edit"><button class="single-post-btn">Edit</button></a>
 			 		</li>
 			 		<li ng-show="showBtn()">
-			 			<button class="single-post-btn" ng-click="deletePost()">Delete</button>
+			 			<button class="single-post-btn" ng-click="openDeleteModal()">Delete</button>
 			 		</li>	
 			 	</ul>
 			 </div>
@@ -40,7 +40,8 @@
 							</div>
 						<div class="clearfix"></div>
 						<div class="rep">
-							<a href="" class="reply" ng-click="openModal('comment',comment._id)">REPLY</a>
+							<button class="single-post-btn" ng-click="openCommentModal('comment',comment._id)">Reply</button>
+							<!-- <a href="" class="reply" ng-click="openCommentModal('comment',comment._id)">REPLY</a> -->
 						</div>
 					</div>
 						

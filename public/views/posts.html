@@ -18,7 +18,8 @@
   						 	<ul>
   						 		<li><i class="fa fa-calendar" aria-hidden="true"></i><span>{{post.createdOn | date:'MMM dd, yyyy  h:mma'}}</span></li>
 						 		<li><i class="fa fa-user" aria-hidden="true"></i><span>{{post.author.username}}</span></li>
-						 		<li><i class="fa fa-commenting" aria-hidden="true"></i><span>{{post.comments.length}} comments</span></li>
+						 		<li><i class="fa fa-thumbs-up"  id="fa-thumbs-up" aria-hidden="true"></i><span>{{post.upvotes}} likes</span></li>
+						 		<li><i class="fa fa-comments"  id="fa-comments" aria-hidden="true"></i><span>{{post.comments.length}} comments</span></li>
   						 	</ul>
   						 </div>
 					</div>

@@ -85,7 +85,7 @@
 }  
 .single-post-btn{
     text-decoration: none;
-    font-size: 1.1em;
+    font-size: 1em;
     background: #26313b;
     color: #f0f0f0;
     padding: 0.5em 1em;
@@ -97,6 +97,7 @@
     text-transform: uppercase;
     font-weight: 400;
     border: none;
+    margin-right: 10px;
 }
 .single-post-btn:hover{
     background-color: #f53f1a;
@@ -122,4 +123,9 @@
 /*contact*/
 .alert {
     font-size: 1.3em;
+}
+.cancel-link{
+    margin-left: 2em;
+    font-size: 1em;
+    text-transform: uppercase;
 }

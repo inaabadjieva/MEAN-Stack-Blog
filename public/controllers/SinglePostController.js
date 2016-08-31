@@ -28,13 +28,13 @@ app.controller('SinglePostController', function(
 			alertService.clear();
 		};
 
-		$scope.deletePost = function(){
-			posts.delete(post).then(function(){
-				$state.go('posts');
-				alertService.add("success", "Well done! You successfully deleted your post.");
-			});
-			alertService.clear();
-		};
+		// $scope.deletePost = function(){
+		// 	posts.delete(post).then(function(){
+		// 		$state.go('posts');
+		// 		alertService.add("success", "Well done! You successfully deleted your post.");
+		// 	});
+		// 	alertService.clear();
+		// };
 
 		$scope.incrementUpvotes = function(post){
 			posts.upvote(post);
@@ -47,13 +47,39 @@ app.controller('SinglePostController', function(
 			return false;
 		};
 
-	  	$scope.openModal = function (refObject,refId) {
+		$scope.openDeleteModal = function () {
+		    var modalInstance = $uibModal.open({
+		      animation: true,
+		      ariaLabelledBy: 'modal-title',
+		      templateUrl: 'views/deleteModal.html',
+		      controller: 'DeleteModalCtrl',
+		      controllerAs: '$ctrl',
+		      size: 'lg',
+		      resolve: {
+		        post : function(){
+		        	return post;
+		        },
+		        posts : function(){
+		        	return posts;
+		        }
+		      }
+		    });
+
+		    modalInstance.result.then(function (selectedItem) {
+		      $scope.selected = selectedItem;
+		      $window.location.reload();
+		    }, function () {
+		      $log.info('Modal dismissed at: ' + new Date());
+		    });
+	 	};
+
+	  	$scope.openCommentModal = function (refObject,refId) {
 		    var modalInstance = $uibModal.open({
 		      animation: true,
 		      ariaLabelledBy: 'modal-title',
 		      ariaDescribedBy: 'modal-body',
-		      templateUrl: 'views/new-comment.html',
-		      controller: 'ModalInstanceCtrl',
+		      templateUrl: 'views/commentModal.html',
+		      controller: 'CommentModalCtrl',
 		      controllerAs: '$ctrl',
 		      size: 'lg',
 		      resolve: {
@@ -81,7 +107,25 @@ app.controller('SinglePostController', function(
 	 	};
 	 });
 
-app.controller('ModalInstanceCtrl', function ($uibModalInstance, refObject,refId,isLoggedIn,posts) {
+app.controller('DeleteModalCtrl', function ($uibModalInstance, posts, post, $state) {
+  var $ctrl = this;
+ 	
+  $ctrl.delete = function () {
+  		posts.delete(post).then(function(){
+				$state.go('posts');
+				alertService.add("success", "Well done! You successfully deleted your post.");
+			});
+		alertService.clear();
+
+ 		$uibModalInstance.close();
+  };
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
+
+app.controller('CommentModalCtrl', function ($uibModalInstance, refObject,refId,isLoggedIn,posts) {
   var $ctrl = this;
   $ctrl.isLoggedIn = isLoggedIn;
  	

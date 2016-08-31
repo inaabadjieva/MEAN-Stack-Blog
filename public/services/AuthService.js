@@ -46,11 +46,3 @@ app.factory('auth', ['$http', '$window', function($http, $window){
 	return auth;
 }])
 
-.controller('NavController', [
-	'$scope',
-	'auth',
-	function($scope, auth){
-		$scope.isLoggedIn = auth.isLoggedIn;
-		$scope.currentUser = auth.currentUser;
-		$scope.logOut = auth.logOut;
-	}]);

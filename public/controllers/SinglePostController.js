@@ -55,21 +55,17 @@ app.controller('SinglePostController', function(
 		      controller: 'DeleteModalCtrl',
 		      controllerAs: '$ctrl',
 		      size: 'lg',
-		      resolve: {
-		        post : function(){
-		        	return post;
-		        },
-		        posts : function(){
-		        	return posts;
-		        }
-		      }
 		    });
 
-		    modalInstance.result.then(function (selectedItem) {
-		      $scope.selected = selectedItem;
-		      $window.location.reload();
+		    modalInstance.result.then(function () {
+		    	posts.delete(post).then(function(){
+					$state.go('posts');
+					alertService.add("success", "Well done! You successfully deleted your post.");
+					alertService.clear();
+				});
+		     
 		    }, function () {
-		      $log.info('Modal dismissed at: ' + new Date());
+		   
 		    });
 	 	};
 
@@ -111,12 +107,6 @@ app.controller('DeleteModalCtrl', function ($uibModalInstance, posts, post, $sta
   var $ctrl = this;
  	
   $ctrl.delete = function () {
-  		posts.delete(post).then(function(){
-				$state.go('posts');
-				alertService.add("success", "Well done! You successfully deleted your post.");
-			});
-		alertService.clear();
-
  		$uibModalInstance.close();
   };
 

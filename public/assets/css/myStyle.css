@@ -129,3 +129,10 @@
     font-size: 1em;
     text-transform: uppercase;
 }
+/*footer*/
+.footer {
+    padding: 1em 0px;
+    text-align: center;
+    font-size: 1.2em;
+    background: rgba(0, 0, 0, 0.09);
+}

@@ -33,10 +33,4 @@ npm start</pre></div>
 </code></pre>
 <p>If working, it should automatically create a collection named 'blog' specified in app.js file.</p>
 
-<h2>Install &amp; Run</h2>
-
-<pre><code>
-$ npm install
-$ npm start
-</code></pre>
 
